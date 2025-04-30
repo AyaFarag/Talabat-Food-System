@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.PL.API", "Talabat.PL.API\Talabat.PL.API.csproj", "{155BDFFB-6E1B-4507-AB14-640E554BDEBA}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.Domain", "Talabat.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.Application", "Talabat.Application\Talabat.Application.csproj", "{20B60314-D3E5-4284-93AA-5376ABEE5B71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.Infrastructure", "Talabat.Infrastructure\Talabat.Infrastructure.csproj", "{78528954-5549-46E5-9E6F-778B6B0B3B9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.Infrastructure", "Talabat.Infrastructure.Pro\Talabat.Infrastructure.csproj", "{4FCF0EB8-5F3F-4A06-A45D-E46D62ACCC0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{20B60314-D3E5-4284-93AA-5376ABEE5B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20B60314-D3E5-4284-93AA-5376ABEE5B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20B60314-D3E5-4284-93AA-5376ABEE5B71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78528954-5549-46E5-9E6F-778B6B0B3B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78528954-5549-46E5-9E6F-778B6B0B3B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78528954-5549-46E5-9E6F-778B6B0B3B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78528954-5549-46E5-9E6F-778B6B0B3B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FCF0EB8-5F3F-4A06-A45D-E46D62ACCC0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FCF0EB8-5F3F-4A06-A45D-E46D62ACCC0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FCF0EB8-5F3F-4A06-A45D-E46D62ACCC0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FCF0EB8-5F3F-4A06-A45D-E46D62ACCC0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
