@@ -9,7 +9,12 @@ namespace Talabat.Application.Contracts.Interfaces
 {
     public interface IuserService
     {
-        Task<UserResponseDTO> CreateUser(CreateUserDTO userDTO, IEnumerable<string>? roles = null);
+        Task<UserResponseDTO> CreateUser(CreateUserDTO userDTO);
+        Task<UserResponseDTO> Edit(string id, UpdateUserDTO userDTO);
+        Task<bool> RemoveUser(string id);
+        Task<IEnumerable<UserResponseDTO>> GetAllUsers();
+        Task<UserResponseDTO> userById(string id);
+        Task<bool> RemoveRoleFromUser(string id, string roleName);
 
     }
 }

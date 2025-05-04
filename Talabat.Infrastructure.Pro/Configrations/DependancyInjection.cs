@@ -11,6 +11,7 @@ using Talabat.Application.Contracts.Interfaces;
 using Talabat.Application.Contracts.Services;
 using Talabat.Application.Repository.Interfaces;
 using Talabat.Infrastructure.Automapper;
+using Talabat.Infrastructure.Presistance.Repository;
 
 namespace Talabat.Infrastructure.Configrations
 {
@@ -18,7 +19,8 @@ namespace Talabat.Infrastructure.Configrations
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IUserRepository, IUserRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
             services.AddAutoMapper(typeof(UserProfile));
             return services;
         }

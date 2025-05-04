@@ -38,7 +38,7 @@ namespace Talabat.Application.Configrations
             });
 
 
-            services.AddScoped<IuserService, UserService>();
+            services.AddTransient<IuserService, UserService>();
             return services;
         }
 

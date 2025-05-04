@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Talabat.Application.Contracts.Interfaces;
 using Talabat.Application.DTO.User;
@@ -20,37 +21,44 @@ namespace Talabat.PL.API.Controllers
         [HttpGet("get/users")]
         public async Task<IActionResult> getAllUser()
         {
-            // service.getAlluser();
-            return Ok();
+            var users = await userService.GetAllUsers();
+            return Ok(users);
         }
 
         [HttpGet("get/user/{id}")]
-        public async Task<IActionResult> getUserById(int userId)
+        public async Task<IActionResult> getUserById(string userId)
         {
-            // service.getAlluser(userId);
-            return Ok();
+            var user = await userService.userById(userId);
+            return Ok(user);
         }
 
         [HttpPost("add/user")]
-        public async Task<IActionResult> AddUser(CreateUserDTO user, IEnumerable<string>? roles)
+        public async Task<IActionResult> AddUser([FromBody] CreateUserDTO user)
         {
-           var result = await userService.CreateUser(user, roles);
+           var result = await userService.CreateUser(user);
             return Ok(result);
         }
 
-        [HttpPut("update/user/{id}")]
-        // UserDTO dto
-        public async Task<IActionResult> updateUser(int userId)
+        [HttpDelete("remove/role/{id}/{rolename}")]
+        public async Task<IActionResult> RemoveUserRole([FromRoute]string id, string roleName)
         {
-            // service.updateuser(userId);
-            return Ok();
+            var result = await userService.RemoveRoleFromUser(id, roleName);
+            return Ok(result);
+        }
+
+        [HttpPut("update/user")]
+        // UserDTO dto
+        public async Task<IActionResult> updateUser([FromQuery]string userId , UpdateUserDTO user)
+        {
+            var result = await userService.Edit(userId, user);
+            return Ok(result);
         }
 
         [HttpDelete("user/{id}")]
-        public async Task<IActionResult> deleteUser(int userId)
+        public async Task<IActionResult> deleteUser(string userId)
         {
-            // service.deleteuser(userId);
-            return Ok();
+            var isDeleted = await userService.RemoveUser(userId);
+            return Ok(isDeleted);
         }
 
     }

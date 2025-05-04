@@ -20,14 +20,38 @@ namespace Talabat.Application.Contracts.Services
             _mapper = mapper;
         }
 
-        public async Task<UserResponseDTO> CreateUser(CreateUserDTO userDTO, IEnumerable<string>? roles)
+        public async Task<UserResponseDTO> CreateUser(CreateUserDTO userDTO)
         {
             var user = await userRepository.createUser(userDTO);
 
             var response = _mapper.Map<UserResponseDTO>(user);
             return response;
 
+        }
 
+        public async Task<UserResponseDTO> Edit(string id, UpdateUserDTO userDTO)
+        {
+            return await userRepository.updateUser(id, userDTO);
+        }
+
+        public async Task<IEnumerable<UserResponseDTO>> GetAllUsers()
+        {
+            return await userRepository.GetUsers();
+        }
+
+        public async Task<bool> RemoveRoleFromUser(string id, string roleName)
+        {
+            return await userRepository.revokRole(id, roleName);
+        }
+
+        public async Task<bool> RemoveUser(string id)
+        {
+            return await userRepository.deleteUser(id);
+        }
+
+        public async Task<UserResponseDTO> userById(string id)
+        {
+            return await userRepository.getUserById(id);
         }
     }
 }

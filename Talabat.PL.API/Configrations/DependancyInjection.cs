@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Talabat.Application.Contracts.Interfaces;
+using Talabat.Application.Contracts.Services;
 using Talabat.Application.Extentions;
+using Talabat.Application.Repository.Interfaces;
 using Talabat.Infrastructure.Models;
 using Talabat.Infrastructure.Presistance.Data;
+using Talabat.Infrastructure.Presistance.Repository;
 
 namespace Talabat.PL.API.Configrations
 {
@@ -78,6 +82,8 @@ namespace Talabat.PL.API.Configrations
                 .AddDefaultTokenProviders();
 
             services.Configure<JWT>(configuration.GetSection("JWT"));
+
+
 
             return services;
         }
