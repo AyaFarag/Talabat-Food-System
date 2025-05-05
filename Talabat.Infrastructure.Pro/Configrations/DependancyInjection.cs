@@ -20,8 +20,12 @@ namespace Talabat.Infrastructure.Configrations
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+
 
             services.AddAutoMapper(typeof(UserProfile));
+            services.AddAutoMapper(typeof(RoleProfile));
+
             return services;
         }
 

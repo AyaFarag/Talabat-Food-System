@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,28 +37,41 @@ namespace Talabat.Infrastructure.Presistance.Repository
             {
                 await _userManager.AddToRolesAsync(request, userDTO.Roles);
             }
-            var response = _mapper.Map<UserResponseDTO>(user);
-           
+            var response = _mapper.Map<UserResponseDTO>(request);
+            response.Roles = await _userManager.GetRolesAsync(request);
             return response;
+        }
+        public async Task<UserResponseDTO> assignUserRole(string id, string rolename)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return new UserResponseDTO() { };
+            await _userManager.AddToRoleAsync(user, rolename);
+
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var response = _mapper.Map<UserResponseDTO>(user);
+            response.Roles = roles;
+            return response;
+
         }
         public async Task<bool> revokRole(string id, string roleName)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user == null) return false;
-
+            var roles = await _userManager.GetRolesAsync(user);
             var result = await _userManager.RemoveFromRoleAsync(user, roleName);
             return result.Succeeded;
 
         }
         public async Task<UserResponseDTO> updateUser(string id, UpdateUserDTO userDTO)
         {
-            var user = await _userManager.FindByIdAsync(id);
+            //var user = await _userManager.FindByIdAsync(id);
 
-            if (id != userDTO.Id) { throw new NotImplementedException(); }
-            if (user == null) { throw new NotImplementedException(); }
-
-            await _userManager.UpdateAsync(user);
-            var response = _mapper.Map<UserResponseDTO>(user);
+            
+            var userData = _mapper.Map<ApplicationUser>(userDTO);
+            
+            await _userManager.UpdateAsync(userData);
+            var response = _mapper.Map<UserResponseDTO>(userData);
             return response;
 
 
@@ -74,15 +88,19 @@ namespace Talabat.Infrastructure.Presistance.Repository
         public async Task<UserResponseDTO> getUserById(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
+            if (user == null) { throw new Exception(); }
+
             var response = _mapper.Map<UserResponseDTO>(user);
+            response.Roles = await _userManager.GetRolesAsync(user);
             return response;
 
         }
         public async Task<IEnumerable<UserResponseDTO>> GetUsers()
         {
-            var users = await _userManager.Users
-                        .Select(user => new UserResponseDTO()).ToListAsync();
-            return users;
+            var users = await _userManager.Users.ToListAsync();
+            var response = _mapper.Map<IEnumerable<UserResponseDTO>>(users);
+            
+            return response;
         }
 
     }

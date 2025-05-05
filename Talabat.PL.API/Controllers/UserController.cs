@@ -26,9 +26,9 @@ namespace Talabat.PL.API.Controllers
         }
 
         [HttpGet("get/user/{id}")]
-        public async Task<IActionResult> getUserById(string userId)
+        public async Task<IActionResult> getUserById([FromRoute] string id)
         {
-            var user = await userService.userById(userId);
+            var user = await userService.userById(id);
             return Ok(user);
         }
 
@@ -38,26 +38,31 @@ namespace Talabat.PL.API.Controllers
            var result = await userService.CreateUser(user);
             return Ok(result);
         }
+        [HttpPost("add/user/role")]
+        public async Task<IActionResult> AddUserRole([FromQuery] string id ,[FromQuery] string roleName)
+        {
+            return Ok(await userService.AddUserRole(id,roleName));
+        }
 
-        [HttpDelete("remove/role/{id}/{rolename}")]
-        public async Task<IActionResult> RemoveUserRole([FromRoute]string id, string roleName)
+        [HttpPost("remove/user/role")]
+        public async Task<IActionResult> RemoveUserRole([FromQuery] string id, string roleName)
         {
             var result = await userService.RemoveRoleFromUser(id, roleName);
             return Ok(result);
         }
 
         [HttpPut("update/user")]
-        // UserDTO dto
-        public async Task<IActionResult> updateUser([FromQuery]string userId , UpdateUserDTO user)
+        
+        public async Task<IActionResult> updateUser([FromQuery] string userId , UpdateUserDTO user)
         {
             var result = await userService.Edit(userId, user);
             return Ok(result);
         }
 
         [HttpDelete("user/{id}")]
-        public async Task<IActionResult> deleteUser(string userId)
+        public async Task<IActionResult> deleteUser(string id)
         {
-            var isDeleted = await userService.RemoveUser(userId);
+            var isDeleted = await userService.RemoveUser(id);
             return Ok(isDeleted);
         }
 

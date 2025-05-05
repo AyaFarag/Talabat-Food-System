@@ -13,6 +13,8 @@ namespace Talabat.Application.DTO.User
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Gender { get; set; }
-        
+        public IEnumerable<string>? Roles { get; set; }
+
+
     }
 }

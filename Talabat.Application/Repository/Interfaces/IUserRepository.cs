@@ -14,6 +14,7 @@ namespace Talabat.Application.Repository.Interfaces
         Task<bool> deleteUser(string id);
         Task<IEnumerable<UserResponseDTO>> GetUsers();
         Task<UserResponseDTO> getUserById(string id);
+        Task<UserResponseDTO> assignUserRole(string id , string rolename);
         Task<bool> revokRole(string id ,string roleName);
 
     }

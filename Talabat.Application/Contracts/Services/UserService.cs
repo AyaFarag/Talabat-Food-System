@@ -39,6 +39,10 @@ namespace Talabat.Application.Contracts.Services
             return await userRepository.GetUsers();
         }
 
+        public async Task<UserResponseDTO> AddUserRole(string id, string rolename)
+        {
+            return await userRepository.assignUserRole(id, rolename);
+        }
         public async Task<bool> RemoveRoleFromUser(string id, string roleName)
         {
             return await userRepository.revokRole(id, roleName);

@@ -39,6 +39,8 @@ namespace Talabat.Application.Configrations
 
 
             services.AddTransient<IuserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
+
             return services;
         }
 

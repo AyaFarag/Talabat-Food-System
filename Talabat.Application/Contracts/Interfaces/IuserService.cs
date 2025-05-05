@@ -14,6 +14,7 @@ namespace Talabat.Application.Contracts.Interfaces
         Task<bool> RemoveUser(string id);
         Task<IEnumerable<UserResponseDTO>> GetAllUsers();
         Task<UserResponseDTO> userById(string id);
+        Task<UserResponseDTO> AddUserRole(string id, string rolename);
         Task<bool> RemoveRoleFromUser(string id, string roleName);
 
     }
