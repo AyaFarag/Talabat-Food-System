@@ -37,7 +37,7 @@ namespace Talabat.Infrastructure.Presistance.Repository
         {
             throw new NotImplementedException();
         }
-
+        
         public async Task<IList<PermissionResponseDTO>> getRolesClaims(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -51,16 +51,11 @@ namespace Talabat.Infrastructure.Presistance.Repository
             }).ToList();
         }
 
-        public async Task<IList<PermissionResponseDTO>> getUserClaims(string id)
+        public async Task<IList<Claim>> getUserClaims(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             IList<Claim> claims = await _userManager.GetClaimsAsync(user);
-            return claims.Select(a => new PermissionResponseDTO()
-            {
-                Id = a.Issuer,
-                ClaimValue = a.Value,
-                Type = a.Type
-            }).ToList();
+            return claims;
         }
         public Task<bool> revokeRoleClaim(string id, string claim)
         {

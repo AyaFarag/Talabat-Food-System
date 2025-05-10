@@ -81,7 +81,7 @@ namespace Talabat.PL.API.Configrations
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.Configure<JWT>(configuration.GetSection("JWT"));
+            //services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
 
 

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Talabat.Application.Contracts.Interfaces;
+using Talabat.Application.DTO.Auth;
 
 namespace Talabat.PL.API.Controllers
 {
@@ -7,20 +9,25 @@ namespace Talabat.PL.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        [HttpPost("register")]
-        // RegisterDTO dto
-        public async Task<IActionResult> Register()
+        private readonly IAuthService _authService;
+        public AuthController(IAuthService userService)
         {
-            // service.regiser
-            return Ok();
+            _authService = userService;
+        }
+        [HttpPost("register")]
+     
+        public async Task<IActionResult> Register(UserRegisterRequest userDto)
+        {
+            var user = await _authService.RegisterAsync(userDto);
+            return Ok(user);
         }
 
         [HttpPost("login")]
-        // LoginDTO dto
-        public async Task<IActionResult> login()
+
+        public async Task<IActionResult> login(UserLoginRequest userDto)
         {
-            // service.login
-            return Ok();
+            var user = await _authService.LoginAsync(userDto);
+            return Ok(user);
         }
 
         [HttpPost("logout")]

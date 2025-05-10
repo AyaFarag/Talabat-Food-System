@@ -38,5 +38,7 @@ namespace Talabat.Application.Contracts.Services
         {
             return await _roleRepository.deleteRole(id);
         }
+
+      
     }
 }
